@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class BaseRepository<T> {
@@ -77,6 +78,20 @@ public class BaseRepository<T> {
             databaseConnectionManager.closeSession();
         }
         return entity;
+    }
+
+    public List<T> findAll(Class<T> className) {
+        Session session = databaseConnectionManager.getSession();
+        List<T> entities = null;
+        try {
+            Query<T> query = session.createQuery("from " + className);
+            entities = query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            databaseConnectionManager.closeSession();
+        }
+        return entities;
     }
 
 }

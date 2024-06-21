@@ -32,4 +32,8 @@ public class DoctorService {
         return doctor;
     }
 
+    public Doctor findById(long id) {
+        return doctorRepository.findById(Doctor.class, id);
+    }
+
 }

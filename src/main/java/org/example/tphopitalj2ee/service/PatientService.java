@@ -1,12 +1,11 @@
 package org.example.tphopitalj2ee.service;
 
-import org.example.tphopitalj2ee.exception.PatientAlreadyExistsException;
 import org.example.tphopitalj2ee.exception.PatientNotFoundException;
 import org.example.tphopitalj2ee.model.Patient;
-import org.example.tphopitalj2ee.repository.BaseRepository;
 import org.example.tphopitalj2ee.repository.PatientRepository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class PatientService {
 
@@ -54,14 +53,13 @@ public class PatientService {
            return patientRepository.delete(patient);
     }
 
-    public void findSamePatient(String lastName, String firstName, String birthDate) {
+    public boolean findSamePatient(String lastName, String firstName, String birthDate) {
 
-        boolean result = patientRepository.findSamePatient(lastName, firstName, birthDate);
-        if (result) {
-            throw new PatientAlreadyExistsException("Patient already exists");
-        } else {
-            System.out.println("Patient does not exist");
-        }
+        return patientRepository.findSamePatient(lastName, firstName, birthDate);
+    }
+
+    public List<Patient> findAll() {
+        return patientRepository.findAll(Patient.class);
     }
 
 

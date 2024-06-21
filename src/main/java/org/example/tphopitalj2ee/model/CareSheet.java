@@ -19,6 +19,6 @@ public class CareSheet {
     @JoinColumn(name = "medical_visit_id")
     private MedicalVisit medicalVisit;
 
-
-
+    public CareSheet() {
+    }
 }

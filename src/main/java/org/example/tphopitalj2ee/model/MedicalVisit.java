@@ -33,7 +33,51 @@ public class MedicalVisit {
     public MedicalVisit() {
     }
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
+    public LocalDate getDate() {
+        return date;
+    }
 
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public MedicalPrescription getMedicalPrescription() {
+        return medicalPrescription;
+    }
+
+    public void setMedicalPrescription(MedicalPrescription medicalPrescription) {
+        this.medicalPrescription = medicalPrescription;
+    }
+
+    public List<CareSheet> getCareSheetList() {
+        return careSheetList;
+    }
+
+    public void setCareSheetList(List<CareSheet> careSheetList) {
+        this.careSheetList = careSheetList;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
 }

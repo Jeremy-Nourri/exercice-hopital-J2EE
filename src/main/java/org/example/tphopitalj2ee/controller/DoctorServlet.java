@@ -1,16 +1,19 @@
 package org.example.tphopitalj2ee.controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import org.example.tphopitalj2ee.model.Doctor;
 import org.example.tphopitalj2ee.service.DoctorService;
 
 import java.io.File;
 import java.io.IOException;
 
+@MultipartConfig(maxFileSize = 1024*1024*5)
 @WebServlet(name = "DoctorServlet", value = "/doctor/*")
 public class DoctorServlet extends HttpServlet {
 
@@ -37,6 +40,9 @@ public class DoctorServlet extends HttpServlet {
             case "/signin":
                 signin(request, response);
                 break;
+            case "/dashboard":
+                request.getRequestDispatcher("/WEB-INF/pages/dashboard.jsp").forward(request, response);
+                break;
             default:
                 response.sendRedirect("index.jsp");
         }
@@ -50,9 +56,13 @@ public class DoctorServlet extends HttpServlet {
 
     private void signup(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String lastName = request.getParameter("lastname");
+        System.out.println(lastName);
         String firstName = request.getParameter("firstname");
+        System.out.println(firstName);
         String email = request.getParameter("email");
+        System.out.println(email);
         String password = request.getParameter("password");
+        System.out.println(password);
 
         String uploadPath = getServletContext().getRealPath("/")+"assets";
         File file = new File(uploadPath);
@@ -77,8 +87,14 @@ public class DoctorServlet extends HttpServlet {
     private void signin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        doctorService.signIn(email, password);
-        response.sendRedirect("index.jsp");
+
+        Doctor doctor = doctorService.signIn(email, password);
+        if (doctor != null) {
+            request.getSession().setAttribute("isConnected", true);
+            response.sendRedirect("dashboard");
+        } else {
+            response.sendRedirect("signin-page");
+        }
     }
 
 
