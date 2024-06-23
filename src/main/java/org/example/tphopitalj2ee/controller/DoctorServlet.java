@@ -3,10 +3,7 @@ package org.example.tphopitalj2ee.controller;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+import jakarta.servlet.http.*;
 import org.example.tphopitalj2ee.model.Doctor;
 import org.example.tphopitalj2ee.service.DoctorService;
 
@@ -90,7 +87,9 @@ public class DoctorServlet extends HttpServlet {
 
         Doctor doctor = doctorService.signIn(email, password);
         if (doctor != null) {
-            request.getSession().setAttribute("isConnected", true);
+            HttpSession session = request.getSession();
+            session.setAttribute("isLogged",true);
+
             response.sendRedirect("dashboard");
         } else {
             response.sendRedirect("signin-page");

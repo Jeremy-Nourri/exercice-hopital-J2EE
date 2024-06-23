@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jnour
-  Date: 21/06/2024
-  Time: 11:16
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="patient" type="org.example.tphopitalj2ee.model.Patient" scope="request" />
 <html>
@@ -35,6 +28,10 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+
+</main>
 
 
 

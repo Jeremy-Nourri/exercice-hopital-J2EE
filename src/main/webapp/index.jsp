@@ -9,5 +9,6 @@
 </h1>
 <br/>
 <a href="doctor/signup-page">Inscription</a>
+<a href="doctor/signin-page">Connexion</a>
 </body>
 </html>

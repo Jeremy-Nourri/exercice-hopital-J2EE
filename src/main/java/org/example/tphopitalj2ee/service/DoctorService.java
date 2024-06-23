@@ -12,6 +12,9 @@ public class DoctorService {
     private DoctorRepository doctorRepository = new DoctorRepository();
 
     public Doctor signUp(String lastName, String firstName, String email, String password, String picture ) {
+
+
+
         Doctor doctor = new Doctor();
         doctor.setLastName(lastName);
         doctor.setFirstName(firstName);

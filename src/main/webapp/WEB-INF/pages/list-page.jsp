@@ -1,10 +1,4 @@
-<%@ page import="org.example.tphopitalj2ee.model.Patient" %><%--
-  Created by IntelliJ IDEA.
-  User: jnour
-  Date: 21/06/2024
-  Time: 10:59
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="org.example.tphopitalj2ee.model.Patient" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="patients" type="java.util.ArrayList<org.example.tphopitalj2ee.model.Patient>" scope="request" />
 <html>
@@ -35,7 +29,7 @@
                             <td class="border px-4 py-2"><%= patient.getLastName() %></td>
                             <td class="border px-4 py-2"><%= patient.getFirstName() %></td>
                             <td class="border px-4 py-2"><%= patient.getBirthDate() %></td>
-                            <td class="border px-4 py-2"><img src="data:image/jpg;base64,<%= patient.getPicture() %>" alt="photo" class="w-16 h-16"></td>
+                            <td class="border px-4 py-2"><img src="<%= patient.getPicture() %>" alt="photo" class="w-16 h-16"></td>
                             <td class="border px-4 py-2">
                                 <a href="patient/details?id=<%= patient.getId() %>" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Details</a>
                         </tr>

@@ -84,13 +84,15 @@ public class BaseRepository<T> {
         Session session = databaseConnectionManager.getSession();
         List<T> entities = null;
         try {
-            Query<T> query = session.createQuery("from " + className);
+            Query<T> query = session.createQuery("from " + className.getName());
+            System.out.println(query);
             entities = query.list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             databaseConnectionManager.closeSession();
         }
+        System.out.println(entities);
         return entities;
     }
 
